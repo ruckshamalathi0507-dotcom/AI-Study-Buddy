@@ -21,15 +21,19 @@ button{background:#6c5ce7;color:white;padding:12px 25px;border:none;border-radiu
 <div id="answer">Answer inga varum da...</div>
 </div>
 <script>
-function ask(){
-let q=document.getElementById('q').value;
-let ans=document.getElementById('answer');
-if(!q){ans.innerHTML="Question type pannu da!";return;}
-ans.innerHTML="⏳ Yosikuren da...";
-setTimeout(()=>{
-ans.innerHTML="<b>Question:</b> "+q+"<br><br><b>Answer:</b> This is your AI Study Buddy! Nee '"+q+"' nu ketta. Ithuku answer ah neenga Gemini API connect panni peralam da. Ippo demo ku ithu than! Project GitHub la push aayiduchu na, Vercel la deploy pannidalam!";
-},1000);
+async function ask(){
+  let q=document.getElementById('q').value;
+  let ans=document.getElementById('answer');
+  if(!q){ans.innerHTML="Question type pannu da!";return;}
+  ans.innerHTML="⏳ Yosikuren da...";
+  let res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyB...UN_KEY_AH_INGA_PODU",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({contents:[{parts:[{text:q}]}]})
+  });
+  let data = await res.json();
+  ans.innerHTML = data.candidates[0].content.parts[0].text;
 }
 </script>
 </body>
-</html>
+</html>s
