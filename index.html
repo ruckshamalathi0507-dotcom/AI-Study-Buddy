@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Study Buddy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#f0f2ff;padding:20px;text-align:center}
+.card{background:white;padding:30px;border-radius:20px;max-width:500px;margin:auto;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+h1{color:#6c5ce7}
+textarea{width:90%;padding:12px;margin:10px;border-radius:10px;border:1px solid #ddd}
+button{background:#6c5ce7;color:white;padding:12px 25px;border:none;border-radius:10px;cursor:pointer;font-size:16px}
+#answer{margin-top:20px;text-align:left;background:#f9f9ff;padding:15px;border-radius:10px;min-height:50px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🤖 AI Study Buddy</h1>
+<p>Un doubt ah ketu da!</p>
+<textarea id="q" rows="4" placeholder="Ex: Explain photosynthesis"></textarea><br>
+<button onclick="ask()">Ask AI</button>
+<div id="answer">Answer inga varum da...</div>
+</div>
+<script>
+function ask(){
+let q=document.getElementById('q').value;
+let ans=document.getElementById('answer');
+if(!q){ans.innerHTML="Question type pannu da!";return;}
+ans.innerHTML="⏳ Yosikuren da...";
+setTimeout(()=>{
+ans.innerHTML="<b>Question:</b> "+q+"<br><br><b>Answer:</b> This is your AI Study Buddy! Nee '"+q+"' nu ketta. Ithuku answer ah neenga Gemini API connect panni peralam da. Ippo demo ku ithu than! Project GitHub la push aayiduchu na, Vercel la deploy pannidalam!";
+},1000);
+}
+</script>
+</body>
+</html>
