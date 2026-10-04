@@ -1,14 +1,13 @@
-<!DOCTYPE html>
 <html>
 <head>
 <title>AI Study Buddy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{font-family:Arial;background:#f0f2ff;padding:20px;text-align:center}
-.card{background:white;padding:30px;border-radius:20px;max-width:500px;margin:auto;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+.card{background:white;padding:30px;border-radius:20px;max-width:500px;margin:auto}
 h1{color:#6c5ce7}
-textarea{width:90%;padding:12px;margin:10px;border-radius:10px;border:1px solid #ddd}
-button{background:#6c5ce7;color:white;padding:12px 25px;border:none;border-radius:10px;cursor:pointer;font-size:16px}
+textarea{width:90%;padding:12px;margin:10px;border-radius:10px;border:1px solid #ccc}
+button{background:#6c5ce7;color:white;padding:12px 25px;border:none;border-radius:10px;cursor:pointer}
 #answer{margin-top:20px;text-align:left;background:#f9f9ff;padding:15px;border-radius:10px;min-height:50px}
 </style>
 </head>
@@ -26,14 +25,16 @@ async function ask(){
   let ans=document.getElementById('answer');
   if(!q){ans.innerHTML="Question type pannu da!";return;}
   ans.innerHTML="⏳ Yosikuren da...";
-  let res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyB...UN_KEY_AH_INGA_PODU",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({contents:[{parts:[{text:q}]}]})
-  });
-  let data = await res.json();
-  ans.innerHTML = data.candidates[0].content.parts[0].text;
+  try{
+    let res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=UNGA_API_KEY_INGA_PODU",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({contents:[{parts:[{text:q}]}]})
+    });
+    let data = await res.json();
+    ans.innerHTML = data.candidates[0].content.parts[0].text;
+  }catch(e){ ans.innerHTML="Error da: "+e; }
 }
 </script>
 </body>
-</html>s
+</html>
